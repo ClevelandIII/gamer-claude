@@ -41,7 +41,8 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_AI_KEY: ${{ secrets.VITE_AI_KEY }}
+          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+          VITE_CLAUDE_KEY: ${{ secrets.VITE_CLAUDE_KEY }}
       - name: Setup Pages
         uses: actions/configure-pages@v6
       - name: Upload artifact
