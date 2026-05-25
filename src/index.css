@@ -32,7 +32,8 @@ form {
   margin: 0 auto;
   margin-top: 5vw;
   gap: 2vw;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 5vw;
 }
 form input {
@@ -50,6 +51,10 @@ form button {
   height: 2.5vw;
   border-radius: 10px;
   cursor: pointer;
+}
+form .intro {
+  color: var(--white);
+  margin: 0 auto;
 }
 
 .carousel {
@@ -138,4 +143,20 @@ body {
 .claude h1 {
   margin-top: 0;
   text-align: center;
+}
+
+.carouselButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 97%;
+  margin: 0 auto;
+  margin-top: 1vw;
+}
+.carouselButtons div {
+  border: 2px solid var(--blue);
+  background-color: var(--black);
+  color: var(--white);
+  padding: 0.5vw;
+  margin-right: 1vw;
+  cursor: pointer;
 }/*# sourceMappingURL=index.css.map */

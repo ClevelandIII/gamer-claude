@@ -7,6 +7,7 @@ import List from "../component/List";
 import CallButton from "../component/CallButton";
 import { getRecommendations } from "../ai";
 import Claude from "../component/Claude";
+import CarouselButtons from "../component/CarouselButtons";
 
 function App() {
     const [games, setGames] = React.useState([]);
@@ -38,8 +39,8 @@ function App() {
     }, [claudeResponse]);
 
     async function getResults(event) {
-        console.log(event.get("game"));
-        let game = event.get("game");
+        //console.log(event.target.value);
+        let game = event.target.value;
         setSearched("search=" + game);
     }
 
@@ -83,8 +84,13 @@ function App() {
     return (
         <>
             <Header />
+
             <form action={getResults}>
-                <Search />
+                <p className="intro">
+                    Welcome to Gamer Claude! Search and click on a game to get
+                    started!
+                </p>
+                <Search onChange={getResults} />
             </form>
             {/* <section className="gameContainer">{list}</section> */}
             <Carousel
@@ -93,18 +99,29 @@ function App() {
                 showArrows={true}
                 wrapMode="wrap"
                 scrollDistance="slide"
+                arrows={<CarouselButtons />}
             >
                 {list}
             </Carousel>
 
-            <section className="names">
-                <h2>List of games:</h2>
-                <ul>{listCollection}</ul>
-            </section>
+            {listCollection.length > 0 ? (
+                <>
+                    <section className="names">
+                        <h2>List of games:</h2>
+                        <ul>{listCollection}</ul>
+                    </section>
 
-            <CallButton onClick={claudeCall} />
+                    <CallButton onClick={claudeCall} />
+                </>
+            ) : (
+                <></>
+            )}
 
-            <Claude recipe={claudeResponse} ref={scroll} />
+            {claudeResponse != "" ? (
+                <Claude recipe={claudeResponse} ref={scroll} />
+            ) : (
+                <></>
+            )}
         </>
     );
 }
